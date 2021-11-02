@@ -18,7 +18,13 @@ export default function Weather() {
       `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
     );
     const time = new Date().getHours();
-    setWetherObj({ temp, name, weather: weather[0].main, time });
+    setWetherObj({
+      temp,
+      name,
+      weather: weather[0].main,
+      time,
+      icon: weather[0].icon,
+    });
   };
 
   const success = (position) => {

@@ -7,20 +7,42 @@ import styled from "styled-components";
 const API_KEY = "5ff5f673b636e8a4a040a58efff3e499";
 
 export default function Weather() {
-  const [weatherObj, setWetherObj] = useState({});
+  const [weatherObj, setWeatherObj] = useState({});
 
   const getWeather = async (latitude, longitude) => {
     const {
       data: {
-        main: { temp }, // 기온
+        main: { temp },
         name, // 지역명
-        weather, // weather[0].main -- 날씨
+        weather,
       },
     } = await axios.get(
       `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
     );
+    // Set weather boject
     const time = new Date().getHours();
-    setWetherObj({
+    setWeatherObj({
+      temp,
+      name,
+      weather: weather[0].main,
+      time,
+      icon: weather[0].icon,
+    });
+  };
+
+  const getSeoulWeather = async () => {
+    const {
+      data: {
+        main: { temp },
+        name, // Seoul
+        weather,
+      },
+    } = await axios.get(
+      `http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}&units=metric`
+    );
+    // Set weather object
+    const time = new Date().getHours();
+    setWeatherObj({
       temp,
       name,
       weather: weather[0].main,
@@ -35,8 +57,8 @@ export default function Weather() {
   };
 
   const error = (err) => {
-    console.log("위치를 찾을 수 없습니다.");
-    // 서울 날씨 알려주기
+    // 위치를 찾지 못하면 서울 날씨 알려주기
+    getSeoulWeather();
   };
 
   useEffect(() => {
@@ -44,6 +66,7 @@ export default function Weather() {
   });
 
   const { name, temp, icon, weather } = weatherObj;
+  // Set date
   const date = new Date().toDateString();
   const dateLength = date.length;
 

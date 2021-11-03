@@ -1,12 +1,14 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
-// const api = {
-//   key: "6ee1b6ba59abf58f6806b15abc0815b1",
-//   base: "https://api.openweathermap.org/data/2.5/",
-// };
+const api = {
+  key: "6ee1b6ba59abf58f6806b15abc0815b1",
+  base: "https://api.openweathermap.org/data/2.5/",
+};
 
 function Weather() {
+  // 날짜 가져오기
   const dateBuilder = (d) => {
     let months = [
       "Jan",
@@ -33,6 +35,19 @@ function Weather() {
     return `${day} ${date} ${month} ${year}`;
   };
 
+  const city = "Seoul";
+  const url = `${api.base}weather?q=${city}&appid=${api.key}`;
+  const [weather, setWeather] = useState("");
+  axios.get(url).then((responseData) => {
+    const data = responseData.data;
+    setWeather({
+      temperature: data.main.temp,
+      main: data.weather[0].main,
+      loading: false,
+    });
+  });
+  let c = weather.temperature - 273.15;
+
   return (
     <>
       <div className="locationBox">
@@ -41,8 +56,8 @@ function Weather() {
       </div>
 
       <div className="weatherBox">
-        <Temperature>15℃</Temperature>
-        <WeatherDiv>Sunny</WeatherDiv>
+        <Temperature>{c.toFixed(2)}℃</Temperature>
+        <WeatherDiv>{weather.main}</WeatherDiv>
       </div>
     </>
   );

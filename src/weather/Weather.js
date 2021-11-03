@@ -4,7 +4,7 @@ import axios from "axios";
 
 import styled from "styled-components";
 
-const API_KEY = "5ff5f673b636e8a4a040a58efff3e499";
+const API_KEY = "f6965fc2a900e65abf80e05ecdfe38e1";
 
 export default function Weather() {
   const [weatherObj, setWeatherObj] = useState({});
@@ -65,13 +65,13 @@ export default function Weather() {
     navigator.geolocation.getCurrentPosition(success, error);
   });
 
-  const { name, temp, icon, weather } = weatherObj;
+  const { name, temp, icon, weather, time } = weatherObj;
   // Set date
   const date = new Date().toDateString();
   const dateLength = date.length;
 
   return (
-    <Wrapper>
+    <Wrapper time={time}>
       <Day>{date.slice(0, dateLength - 5)}</Day>
       <Place>{name}</Place>
       <Description>{weather}</Description>
@@ -81,10 +81,24 @@ export default function Weather() {
   );
 }
 
+const isDay = (time) => {
+  if (time >= 6 && time < 14) return true;
+  else return false;
+};
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 1.6rem;
+  padding: 5rem 10rem;
+  border-radius: 3rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: ${(props) => (isDay(props.time) ? "#8EC5FC" : "#a33273")};
+  background-image: ${(props) =>
+    isDay(props.time)
+      ? "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)"
+      : "linear-gradient(225deg, #a33273 0%, #5a397a 50%, #216592 100%)"};
+  color: ${(props) => (isDay(props.time) ? "black" : "white")};
 `;
 
 const Day = styled.small``;

@@ -35,8 +35,41 @@ function Weather() {
 
   return (
     <>
-      <div className="locationBox">{dateBuilder(new Date())}</div>
+      <div className="locationBox">
+        <Location>Seoul City, KOREA</Location>
+        <DateDiv>{dateBuilder(new Date())}</DateDiv>
+      </div>
+
+      <div className="weatherBox">
+        <Temperature>15℃</Temperature>
+        <WeatherDiv>Sunny</WeatherDiv>
+      </div>
     </>
   );
 }
 export default Weather;
+
+const Location = styled.div`
+  color: white;
+  font-size: 30px;
+  font-weight: 500;
+  text-shadow: 2px 2px rgba(30, 50, 50, 0.5);
+`;
+
+const DateDiv = styled.div`
+  color: white;
+  font-size: 20px;
+  font-style: italic;
+`;
+
+const Temperature = styled.div`
+  color: white;
+  font-size: 50px;
+  margin-top: 1rem;
+`;
+
+const WeatherDiv = styled.div`
+  color: white;
+  font-size: 20px;
+  margin-top: 2rem;
+`;

@@ -15,8 +15,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 `;
+
 function App() {
   return (
+    // App or App cold
     <Wrapper className="App">
       <GlobalStyle />
       <Weather />
@@ -33,4 +35,14 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: burlywood;
+  border: 10px solid black;
 `;
+
+// .App {
+//   background-color: burlywood;
+// }
+
+// .App.cold {
+//   background-color: skyblue;
+// }

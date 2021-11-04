@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, css } from "styled-components";
 import Weather from "./weather/Weather";
 
 const GlobalStyle = createGlobalStyle`
@@ -17,11 +17,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [cold, setCold] = useState();
+
   return (
-    // App or App cold
-    <Wrapper className="App">
+    <Wrapper className="App" cold={cold}>
       <GlobalStyle />
-      <Weather />
+      <Weather setCold={setCold} />
     </Wrapper>
   );
 }
@@ -35,14 +36,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: burlywood;
   border: 10px solid black;
+  background-color: burlywood;
+  ${(props) =>
+    props.cold === true &&
+    css`
+      background-color: skyblue;
+    `}
 `;
-
-// .App {
-//   background-color: burlywood;
-// }
-
-// .App.cold {
-//   background-color: skyblue;
-// }

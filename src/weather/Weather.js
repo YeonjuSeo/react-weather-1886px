@@ -7,7 +7,7 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
-function Weather() {
+function Weather({ setCold }) {
   // 날짜 가져오기
   const dateBuilder = (d) => {
     let months = [
@@ -47,9 +47,9 @@ function Weather() {
     });
   });
   let c = weather.temperature - 273.15;
-
+  setCold(c < 15 ? true : false);
   return (
-    <>
+    <Wrapper>
       <div className="locationBox">
         <Location>Seoul City, KOREA</Location>
         <DateDiv>{dateBuilder(new Date())}</DateDiv>
@@ -59,10 +59,12 @@ function Weather() {
         <Temperature>{c.toFixed(2)}℃</Temperature>
         <WeatherDiv>{weather.main}</WeatherDiv>
       </div>
-    </>
+    </Wrapper>
   );
 }
 export default Weather;
+
+const Wrapper = styled.div``;
 
 const Location = styled.div`
   color: white;

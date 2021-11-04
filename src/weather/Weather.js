@@ -17,7 +17,7 @@ export default function Weather() {
         weather,
       },
     } = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
     );
     // Set weather boject
     const time = new Date().getHours();
@@ -38,7 +38,7 @@ export default function Weather() {
         weather,
       },
     } = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}&units=metric`
     );
     // Set weather object
     const time = new Date().getHours();
@@ -75,7 +75,7 @@ export default function Weather() {
       <Day>{date.slice(0, dateLength - 5)}</Day>
       <Place>{name}</Place>
       <Description>{weather}</Description>
-      <Icon src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
+      <Icon src={`https://openweathermap.org/img/wn/${icon}@2x.png`} />
       <Temperature>{Math.round(temp) + " °C"}</Temperature>
     </Wrapper>
   );

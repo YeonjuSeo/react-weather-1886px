@@ -93,11 +93,11 @@ const Wrapper = styled.div`
   padding: 5rem 10rem;
   border-radius: 3rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  background-color: ${(props) => (isDay(props.time) ? "#8EC5FC" : "#a33273")};
+  background-color: ${(props) => (isDay(props.time) ? "#8EC5FC" : "#5c9cc6")};
   background-image: ${(props) =>
     isDay(props.time)
       ? "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)"
-      : "linear-gradient(225deg, #a33273 0%, #5a397a 50%, #216592 100%)"};
+      : "linear-gradient(135deg, #5c9cc6 0%, #585dbc 100%)"};
   color: ${(props) => (isDay(props.time) ? "black" : "white")};
 `;
 

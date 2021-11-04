@@ -92,7 +92,7 @@ const Wrapper = styled.div`
   font-size: 1.6rem;
   padding: 5rem 10rem;
   border-radius: 3rem;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
   background-color: ${(props) => (isDay(props.time) ? "#8EC5FC" : "#5c9cc6")};
   background-image: ${(props) =>
     isDay(props.time)

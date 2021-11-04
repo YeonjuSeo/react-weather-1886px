@@ -21,10 +21,10 @@ function Weather() {
       setIcon(res.data.weather[0].icon);
       setTemp(res.data.main.feels_like);
     });
-
+  const iconImg = "http://openweathermap.org/img/wn/" + icon + ".png";
   return (
     <div>
-      <Icon>{icon}</Icon>
+      <Icon src={iconImg} />
       <Description>Weather : {weather}</Description>
       <City>City : {city} </City>
       <Temp>Temp:{(temp - 273.15).toFixed(2)}</Temp>
@@ -36,5 +36,5 @@ export default Weather;
 
 const Description = styled.div``;
 const City = styled.div``;
-const Icon = styled.div``;
+const Icon = styled.img``;
 const Temp = styled.div``;

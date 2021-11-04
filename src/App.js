@@ -36,7 +36,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 10px solid black;
   background-color: burlywood;
   ${(props) =>
     props.cold === true &&

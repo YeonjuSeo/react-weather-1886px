@@ -82,7 +82,7 @@ export default function Weather() {
 }
 
 const isDay = (time) => {
-  if (time >= 6 && time < 14) return true;
+  if (time >= 6 && time < 17) return true;
   else return false;
 };
 

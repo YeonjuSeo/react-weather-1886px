@@ -48,6 +48,7 @@ function Weather({ setCold }) {
   const url = `${api.base}weather?q=${city}&appid=${api.key}`;
   const [weather, setWeather] = useState("");
 
+  // 날씨 가져오기
   axios.get(url).then((responseData) => {
     const data = responseData.data;
     setWeather({
@@ -62,26 +63,25 @@ function Weather({ setCold }) {
   setCold(c < 15 ? true : false);
 
   const selectIcon = () => {
-    let iconId = weather.icons === 800 ? 0 : (weather.id / 100).toFixed(0);
-
+    let iconId =
+      weather.id === 800 ? 0 : (parseInt(weather.id) / 100).toFixed(0);
     switch (iconId) {
-      case 0:
+      case "0":
         return <TiWeatherSunny size="6rem" color="red" />;
-      case 2:
+      case "2":
         return <TiWeatherStormy size="6rem" color="black" />;
-      case 3:
+      case "3":
         return <TiWeatherShower size="6rem" color="blue" />;
-      case 5:
+      case "5":
         return <TiWeatherDownpour size="6rem" color="navy" />;
-      case 6:
+      case "6":
         return <TiWeatherSnow size="6rem" color="white" />;
-      case 7:
+      case "7":
         return <BsCloudFog size="6rem" color="white" />;
-      case 8:
+      case "8":
         return <TiWeatherCloudy size="6rem" color="white" />;
     }
   };
-
   return (
     <Wrapper>
       <div className="locationBox">

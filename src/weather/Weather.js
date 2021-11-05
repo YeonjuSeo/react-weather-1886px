@@ -4,7 +4,7 @@ import axios from "axios";
 
 import styled from "styled-components";
 
-const API_KEY = "f6965fc2a900e65abf80e05ecdfe38e1";
+const API_KEY = "9922b87f5b353a8f0987c51a8e5d1711";
 
 export default function Weather() {
   const [weatherObj, setWeatherObj] = useState({});
@@ -19,7 +19,7 @@ export default function Weather() {
     } = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
     );
-    // Set weather boject
+    // Set weather object
     const time = new Date().getHours();
     setWeatherObj({
       temp,

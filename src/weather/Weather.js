@@ -4,7 +4,7 @@ import axios from "axios";
 
 import styled from "styled-components";
 
-const API_KEY = "9922b87f5b353a8f0987c51a8e5d1711";
+const API_KEY = "e8e53ad50d42969e682575d9a0b4fd24";
 
 export default function Weather() {
   const [weatherObj, setWeatherObj] = useState({});

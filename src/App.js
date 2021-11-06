@@ -44,5 +44,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => (props.isDay ? "#71c7ec" : "#005073")};
+
+  background-image: ${(props) =>
+    props.isDay
+      ? "linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%)"
+      : "linear-gradient(315deg, #7f5a83 0%, #0d324d 74%)"};
 `;

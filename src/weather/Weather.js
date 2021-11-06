@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
 
-function Weather() {
+function Weather(props) {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState("");
   const [icon, setIcon] = useState("");
@@ -22,12 +22,17 @@ function Weather() {
       setTemp(res.data.main.feels_like);
     });
   const iconImg = "http://openweathermap.org/img/wn/" + icon + ".png";
+
   return (
     <Wrapper>
+      <Today>
+        {props.month}/{props.date} {props.day}
+      </Today>
+      <City>{city} </City>
       <Icon src={iconImg} />
-      <Description>Weather : {weather}</Description>
-      <City>City : {city} </City>
-      <Temp>Temp:{(temp - 273.15).toFixed(2)}</Temp>
+      <Description> {weather}</Description>
+
+      <Temp>{(temp - 273.15).toFixed(2)}°C</Temp>
     </Wrapper>
   );
 }
@@ -42,4 +47,8 @@ const Icon = styled.img`
 `;
 
 const Temp = styled.div``;
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  font-size: 4.5rem;
+  color: white;
+`;
+const Today = styled.div``;

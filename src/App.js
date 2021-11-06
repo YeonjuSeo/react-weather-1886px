@@ -16,9 +16,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 function App() {
-  const date = new Date();
-  //const hours = date.getHours();
-  const hours = 8;
+  const today = new Date();
+  const hours = today.getHours();
+  const month = today.getMonth();
+  const date = today.getDate();
+  const WEEKDAY = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  const day = WEEKDAY[today.getDay()];
+
   function isDay(hours) {
     if (hours >= 6 && hours <= 17) return true;
   }
@@ -26,7 +30,7 @@ function App() {
   return (
     <Wrapper className="App" isDay={isDay(hours)}>
       <GlobalStyle />
-      <Weather />
+      <Weather month={month} date={date} day={day} />
     </Wrapper>
   );
 }

@@ -4,7 +4,7 @@ import axios from "axios";
 
 import styled, { keyframes } from "styled-components";
 
-const API_KEY = "5121ede7e72cdb262984365da3457a4d";
+const API_KEY = "8b1aaf9c4909b04edfb789054dfb88f1";
 
 export default function Weather() {
   const [weatherObj, setWeatherObj] = useState({});
@@ -102,7 +102,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50rem;
+  max-width: 50rem;
+  width: 80%;
   height: 40rem;
   font-size: 1.6rem;
   border-radius: 3rem;

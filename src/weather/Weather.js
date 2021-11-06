@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled, {css} from "styled-components";
-import {darken} from "polished";
-
-function Weather() {
+function Weather({isDay, setIsDay}) {
     const [date, setDate] = useState({
         day: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
         month: 0,
@@ -16,7 +14,6 @@ function Weather() {
         temperature: 0,
         iconID: '',
     });
-    const [iconLink, setIconLink] = useState('');
     const [count, setCount] = useState(0);
 
     useEffect(() => {
@@ -42,11 +39,13 @@ function Weather() {
                     date: dt.getDate(),
                     dayNum: dt.getDay(),
                 })
-                setIconLink(`'http://openweathermap.org/img/wn/` + weather.iconID + `@2x.png`);
-                console.log(weather);
             });
     }, [count]);
 
+    if(weather.iconID[2]==='d') setIsDay('#aedbfc');
+    else setIsDay('#575757');
+    console.log(weather);
+    console.log(isDay);
 
     return (
         <StyledWeather time={weather.iconID[2]}>
@@ -55,7 +54,7 @@ function Weather() {
             </Day>
             <City>{weather.city}</City>
             <WeatherType>{weather.weatherType}</WeatherType>
-            <WeatherIcon src={iconLink} />
+            <WeatherIcon src={'http://openweathermap.org/img/wn/' + weather.iconID + '@2x.png'} />
             <Temperature>{weather.temperature} &#8451;</Temperature>
         </StyledWeather>
     );
@@ -68,14 +67,6 @@ const StyledWeather = styled.div`
   flex-direction: column;
   justify-content: center;
   color: black;
-  width: 70%;
-  
-  ${props =>{
-      let color = props.time==='d'? '#aedbfc' : '#575757';
-      css`
-        background: linear-gradient(to bottom, color 0%, ${darken(0.5, color)} 100%);
-      `
-  }}
 `
 const Day = styled.div`
   font-size: 2.5rem;

@@ -20,6 +20,10 @@ function Weather() {
 
 
     useEffect(() => {
+        setInterval(() => {
+            console.log('interval triggered');
+            setCount(count + 1);
+        }, 600000);
 
         axios.get('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=4571990276b5d671627c9d2ad6de0012&units=metric')
             .then(function (response) {
@@ -41,7 +45,7 @@ function Weather() {
                 setIconLink(`http://openweathermap.org/img/wn/${data.weather.iconID}@2x.png`);
                 console.log('update');
             });
-    }, []);
+    }, [count]);
 
     return (
         <StyledWeather>

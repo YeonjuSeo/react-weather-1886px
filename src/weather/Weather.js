@@ -16,6 +16,7 @@ function Weather(props) {
       `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${apiKey}`
     )
     .then((res) => {
+      // console.log(res);
       setCity(res.data.name);
       setWeather(res.data.weather[0].main);
       setIcon(res.data.weather[0].icon);

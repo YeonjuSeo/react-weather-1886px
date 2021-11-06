@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   const today = new Date();
   const hours = today.getHours();
-  const month = today.getMonth();
+  const month = today.getMonth() + 1;
   const date = today.getDate();
   const WEEKDAY = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const day = WEEKDAY[today.getDay()];

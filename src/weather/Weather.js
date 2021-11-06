@@ -38,12 +38,12 @@ function Weather({isDay, setIsDay}) {
                     month: dt.getMonth() + 1,
                     date: dt.getDate(),
                     dayNum: dt.getDay(),
-                })
+                });
+
             });
     }, [count]);
 
-    if(weather.iconID[2]==='d') setIsDay('#aedbfc');
-    else setIsDay('#575757');
+
     console.log(weather);
     console.log(isDay);
 
@@ -66,7 +66,7 @@ const StyledWeather = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: black;
+  color: white;
 `
 const Day = styled.div`
   font-size: 2.5rem;

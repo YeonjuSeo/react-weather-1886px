@@ -29,9 +29,10 @@ function Weather(props) {
         {props.month}/{props.date} {props.day}
       </Today>
       <City>{city} </City>
-      <Icon src={iconImg} />
-      <Description> {weather}</Description>
-
+      <div>
+        <Icon src={iconImg} />
+        <Description> {weather}</Description>
+      </div>
       <Temp>{(temp - 273.15).toFixed(2)}°C</Temp>
     </Wrapper>
   );
@@ -39,7 +40,9 @@ function Weather(props) {
 
 export default Weather;
 
-const Description = styled.div``;
+const Description = styled.div`
+  font-size: 2rem;
+`;
 const City = styled.div``;
 const Icon = styled.img`
   width: 25rem;
@@ -50,5 +53,13 @@ const Temp = styled.div``;
 const Wrapper = styled.div`
   font-size: 4.5rem;
   color: white;
+  @font-face {
+    font-family: "EliceDigitalBaeum_Bold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Bold.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  font-family: "EliceDigitalBaeum_Bold";
 `;
 const Today = styled.div``;

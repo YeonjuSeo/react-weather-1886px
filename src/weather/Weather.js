@@ -21,14 +21,13 @@ function Weather() {
 
     useEffect(() => {
         setInterval(() => {
-            console.log('interval triggered');
             setCount(count + 1);
         }, 600000);
 
         axios.get('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=4571990276b5d671627c9d2ad6de0012&units=metric')
             .then(function (response) {
                 const data = response.data;
-                const dt = new Date(response.data.dt * 1000);
+                const dt = new Date(data.dt * 1000);
 
                 setWeather({
                     city: data.name,
@@ -42,16 +41,21 @@ function Weather() {
                     date: dt.getDate(),
                     dayNum: dt.getDay(),
                 })
-                setIconLink(`http://openweathermap.org/img/wn/${data.weather.iconID}@2x.png`);
+                setIconLink('http://openweathermap.org/img/wn/' + weather.iconID + '@2x.png');
                 console.log('update');
             });
     }, [count]);
 
     return (
         <StyledWeather>
-            <StyledDate>
+            <Day>
                 {date.month}/{date.date} {date.day[date.dayNum]}
-            </StyledDate>
+            </Day>
+            <City>{weather.city}</City>
+            <WeatherType>{weather.weatherType}</WeatherType>
+            <WeatherIcon src={iconLink} />
+            <Temperature>{weather.temperature} &#8451;</Temperature>
+
         </StyledWeather>
     );
 
@@ -66,16 +70,24 @@ const StyledWeather = styled.div`
   justify-content: center;
   color: black;
 `
-
-const StyledDate = styled.div`
-  size: 3rem;
+const Day = styled.div`
+  font-size: 2.5rem;
   font-weight: lighter;
-  margin-bottom: 0.5rem;
 `
-const StyledCityName = styled.div`
+const City = styled.div`
+  font-size: 7rem;
+  font-weight: bolder;
 `
 
+const WeatherType = styled.div`
+  font-size: 4rem;
+`
+const WeatherIcon = styled.img`
+  display: inline-flex;
+  width: 20rem;
+`
 
-// const StyledCity = styled
-
-
+const Temperature = styled.div`
+  font-size: 5rem;
+  font-weight: bolder;
+`

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
+import {darken} from "polished";
 
 function Weather() {
     const [date, setDate] = useState({
@@ -15,17 +16,17 @@ function Weather() {
         temperature: 0,
         iconID: '',
     });
-    const [iconLink, setIconLink] = useState(``);
+    const [iconLink, setIconLink] = useState('');
     const [count, setCount] = useState(0);
 
-
     useEffect(() => {
-        setInterval(() => {
+        setInterval(() =>{
             setCount(count + 1);
         }, 600000);
 
-        axios.get('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=4571990276b5d671627c9d2ad6de0012&units=metric')
+        axios.get('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=b814cccab1d91032fe41ee3c739c213d&units=metric')
             .then(function (response) {
+
                 const data = response.data;
                 const dt = new Date(data.dt * 1000);
 
@@ -41,13 +42,14 @@ function Weather() {
                     date: dt.getDate(),
                     dayNum: dt.getDay(),
                 })
-                setIconLink('http://openweathermap.org/img/wn/' + weather.iconID + '@2x.png');
-                console.log('update');
+                setIconLink(`'http://openweathermap.org/img/wn/` + weather.iconID + `@2x.png`);
+                console.log(weather);
             });
     }, [count]);
 
+
     return (
-        <StyledWeather>
+        <StyledWeather time={weather.iconID[2]}>
             <Day>
                 {date.month}/{date.date} {date.day[date.dayNum]}
             </Day>
@@ -55,11 +57,8 @@ function Weather() {
             <WeatherType>{weather.weatherType}</WeatherType>
             <WeatherIcon src={iconLink} />
             <Temperature>{weather.temperature} &#8451;</Temperature>
-
         </StyledWeather>
     );
-
-
 }
 
 export default Weather;
@@ -69,6 +68,14 @@ const StyledWeather = styled.div`
   flex-direction: column;
   justify-content: center;
   color: black;
+  width: 70%;
+  
+  ${props =>{
+      let color = props.time==='d'? '#aedbfc' : '#575757';
+      css`
+        background: linear-gradient(to bottom, color 0%, ${darken(0.5, color)} 100%);
+      `
+  }}
 `
 const Day = styled.div`
   font-size: 2.5rem;
@@ -78,7 +85,6 @@ const City = styled.div`
   font-size: 7rem;
   font-weight: bolder;
 `
-
 const WeatherType = styled.div`
   font-size: 4rem;
 `
@@ -86,7 +92,6 @@ const WeatherIcon = styled.img`
   display: inline-flex;
   width: 20rem;
 `
-
 const Temperature = styled.div`
   font-size: 5rem;
   font-weight: bolder;

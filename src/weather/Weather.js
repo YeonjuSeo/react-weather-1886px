@@ -23,12 +23,12 @@ function Weather() {
     });
   const iconImg = "http://openweathermap.org/img/wn/" + icon + ".png";
   return (
-    <div>
+    <Wrapper>
       <Icon src={iconImg} />
       <Description>Weather : {weather}</Description>
       <City>City : {city} </City>
       <Temp>Temp:{(temp - 273.15).toFixed(2)}</Temp>
-    </div>
+    </Wrapper>
   );
 }
 
@@ -36,5 +36,10 @@ export default Weather;
 
 const Description = styled.div``;
 const City = styled.div``;
-const Icon = styled.img``;
+const Icon = styled.img`
+  width: 25rem;
+  height: 25rem;
+`;
+
 const Temp = styled.div``;
+const Wrapper = styled.div``;

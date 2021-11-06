@@ -16,8 +16,15 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 function App() {
+  const date = new Date();
+  //const hours = date.getHours();
+  const hours = 8;
+  function isDay(hours) {
+    if (hours >= 6 && hours <= 17) return true;
+  }
+
   return (
-    <Wrapper className="App">
+    <Wrapper className="App" isDay={isDay(hours)}>
       <GlobalStyle />
       <Weather />
     </Wrapper>
@@ -33,4 +40,5 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: ${(props) => (props.isDay ? "#71c7ec" : "#005073")};
 `;

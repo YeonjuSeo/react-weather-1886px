@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import "./App.css";
 import styled, {createGlobalStyle, css} from "styled-components";
 import Weather from "./weather/Weather";
-import {darken} from "polished";
 
 const axios = require('axios').default;
 const GlobalStyle = createGlobalStyle`
@@ -40,5 +39,4 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   background: linear-gradient(to bottom, ${props => props.color[0]} 0%, ${props => props.color[1]} 100%);
-  
 `

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import styled, {css} from "styled-components";
+import styled from "styled-components";
+
 function Weather({isDay, setIsDay}) {
     const [date, setDate] = useState({
         day: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],

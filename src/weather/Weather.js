@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import axios from "axios";
 
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const API_KEY = "e8e53ad50d42969e682575d9a0b4fd24";
 
 export default function Weather() {
   const [weatherObj, setWeatherObj] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const getWeather = async (latitude, longitude) => {
     const {
@@ -28,6 +29,7 @@ export default function Weather() {
       time,
       icon: weather[0].icon,
     });
+    setLoading(false);
   };
 
   const getSeoulWeather = async () => {
@@ -49,6 +51,7 @@ export default function Weather() {
       time,
       icon: weather[0].icon,
     });
+    setLoading(false);
   };
 
   const success = (position) => {
@@ -72,11 +75,19 @@ export default function Weather() {
 
   return (
     <Wrapper time={time}>
-      <Day>{date.slice(0, dateLength - 5)}</Day>
-      <Place>{name}</Place>
-      <Description>{weather}</Description>
-      <Icon src={`https://openweathermap.org/img/wn/${icon}@2x.png`} />
-      <Temperature>{Math.round(temp) + " °C"}</Temperature>
+      {loading ? (
+        <>
+          <LoadingIcon></LoadingIcon>
+        </>
+      ) : (
+        <>
+          <Day>{date.slice(0, dateLength - 5)}</Day>
+          <Place>{name}</Place>
+          <Description>{weather}</Description>
+          <Icon src={`https://openweathermap.org/img/wn/${icon}@2x.png`} />
+          <Temperature>{Math.round(temp) + " °C"}</Temperature>
+        </>
+      )}
     </Wrapper>
   );
 }
@@ -89,8 +100,11 @@ const isDay = (time) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50rem;
+  height: 40rem;
   font-size: 1.6rem;
-  padding: 5rem 10rem;
   border-radius: 3rem;
   box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
   background-color: ${(props) => (isDay(props.time) ? "#8EC5FC" : "#5c9cc6")};
@@ -99,6 +113,20 @@ const Wrapper = styled.div`
       ? "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)"
       : "linear-gradient(135deg, #5c9cc6 0%, #585dbc 100%)"};
   color: ${(props) => (isDay(props.time) ? "black" : "white")};
+`;
+
+const spin = keyframes`
+  to { -webkit-transform: rotate(360deg); }
+`;
+
+const LoadingIcon = styled.div`
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: ${spin} 1s ease-in-out infinite;
 `;
 
 const Day = styled.small``;

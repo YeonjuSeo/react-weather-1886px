@@ -22,7 +22,7 @@ function Weather(props) {
       setIcon(res.data.weather[0].icon);
       setTemp(res.data.main.feels_like);
     });
-  const iconImg = "http://openweathermap.org/img/wn/" + icon + ".png";
+  const iconImg = "http://openweathermap.org/img/wn/" + icon + "@4x.png";
 
   return (
     <Wrapper>

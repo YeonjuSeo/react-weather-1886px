@@ -24,7 +24,11 @@ function App() {
   const day = WEEKDAY[today.getDay()];
 
   function isDay(hours) {
-    if (hours >= 6 && hours <= 17) return true;
+    if (hours >= 6 && hours <= 17) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   return (

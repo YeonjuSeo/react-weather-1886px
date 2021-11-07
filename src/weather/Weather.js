@@ -20,7 +20,7 @@ function Weather({isDay, setIsDay}) {
     useEffect(() => {
         setInterval(() =>{
             setCount(count + 1);
-        }, 600000);
+        }, 60000);
 
         axios.get('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=b814cccab1d91032fe41ee3c739c213d&units=metric')
             .then(function (response) {
@@ -29,8 +29,7 @@ function Weather({isDay, setIsDay}) {
                 const dt = new Date(data.dt * 1000);
 
                 setWeather({
-                    c
-                    ity: data.name,
+                    city: data.name,
                     weatherType: data.weather[0].main,
                     temperature: data.main.temp,
                     iconID: data.weather[0].icon,
@@ -44,11 +43,8 @@ function Weather({isDay, setIsDay}) {
                 if(weather.iconID[2]==='d') setIsDay(true);
                 else setIsDay(false);
             });
-    }, [count]);
-
-
-    console.log(weather);
-    console.log(isDay);
+        console.log(weather);
+    }, []);
 
     return (
         <StyledWeather time={weather.iconID[2]}>

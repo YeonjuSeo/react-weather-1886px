@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.weather {
+  background-image: url('./image/day.jpg');
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.4 case-out;
+  opacity: 0.7;
+}
+
+.weather.night {
+  background-image: url('./image/night.jpg');
+  opacity: 0.7;
+}
+main {
+  min-height: 100vh;
+  min-width: 70vh;
+}

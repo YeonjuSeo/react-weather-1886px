@@ -16,10 +16,25 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 function App() {
+  const today = new Date();
+  const hours = today.getHours();
+  const month = today.getMonth() + 1;
+  const date = today.getDate();
+  const WEEKDAY = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  const day = WEEKDAY[today.getDay()];
+
+  function isDay(hours) {
+    if (hours >= 6 && hours <= 17) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   return (
-    <Wrapper className="App">
+    <Wrapper className="App" isDay={isDay(hours)}>
       <GlobalStyle />
-      <Weather />
+      <Weather month={month} date={date} day={day} />
     </Wrapper>
   );
 }
@@ -33,4 +48,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  background-image: ${(props) =>
+    props.isDay
+      ? "linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%)"
+      : "linear-gradient(315deg, #7f5a83 0%, #0d324d 74%)"};
 `;

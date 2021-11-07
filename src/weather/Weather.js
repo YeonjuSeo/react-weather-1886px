@@ -10,38 +10,14 @@ export default function Weather() {
   const [weatherObj, setWeatherObj] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const getWeather = async (latitude, longitude) => {
+  const getWeather = async (api) => {
     const {
       data: {
         main: { temp },
         name, // 지역명
         weather,
       },
-    } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
-    );
-    // Set weather object
-    const time = new Date().getHours();
-    setWeatherObj({
-      temp,
-      name,
-      weather: weather[0].main,
-      time,
-      icon: weather[0].icon,
-    });
-    setLoading(false);
-  };
-
-  const getSeoulWeather = async () => {
-    const {
-      data: {
-        main: { temp },
-        name, // Seoul
-        weather,
-      },
-    } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}&units=metric`
-    );
+    } = await axios.get(api);
     // Set weather object
     const time = new Date().getHours();
     setWeatherObj({
@@ -56,12 +32,14 @@ export default function Weather() {
 
   const success = (position) => {
     const { latitude, longitude } = position.coords;
-    getWeather(latitude, longitude);
+    const api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
+    getWeather(api);
   };
 
   const error = (err) => {
     // 위치를 찾지 못하면 서울 날씨 알려주기
-    getSeoulWeather();
+    const api = `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}&units=metric`;
+    getWeather(api);
   };
 
   useEffect(() => {

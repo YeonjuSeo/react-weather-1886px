@@ -54,10 +54,16 @@ function Weather({isDay, setIsDay}) {
             <Day>
                 {date.month}/{date.date} {date.day[date.dayNum]}
             </Day>
-            <City>{weather.city}</City>
-            <WeatherType>{weather.weatherType}</WeatherType>
-            <WeatherIcon src={'http://openweathermap.org/img/wn/' + weather.iconID + '@2x.png'} />
-            <Temperature>{weather.temperature} &#8451;</Temperature>
+            <City>
+                {weather.city}
+            </City>
+            <WeatherType>
+                {weather.weatherType}
+            </WeatherType>
+            <WeatherIcon src={'http://openweathermap.org/img/wn/' + weather.iconID + '@4x.png'} />
+            <Temperature>
+                {weather.temperature} &#8451;
+            </Temperature>
         </StyledWeather>
     );
 }

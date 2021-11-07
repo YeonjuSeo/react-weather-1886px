@@ -20,9 +20,11 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-    const [isDay, setIsDay] = useState([]);
+    const [isDay, setIsDay] = useState(true);
+    const dayColor = ['#7fc0f0', '#249af0'];
+    const nightColor = ['#2e2e2e', '#000000'];
     return (
-        <Wrapper className="App" color={isDay}>
+        <Wrapper className="App" isDay={isDay} dayColor={dayColor} nightColor={nightColor}>
             <GlobalStyle />
             <Weather isDay={isDay} setIsDay={setIsDay}/>
         </Wrapper>
@@ -38,5 +40,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to bottom, ${props => props.color[0]} 0%, ${props => props.color[1]} 100%);
+  ${props => {
+    const color = props.isDay ? props.dayColor : props.nightColor;
+    return css`
+      background: linear-gradient(to bottom, ${color[0]} 0%, ${color[1]} 100%);
+    `
+  }}
 `

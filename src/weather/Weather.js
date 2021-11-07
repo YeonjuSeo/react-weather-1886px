@@ -4,7 +4,10 @@ import axios from "axios";
 
 import styled, { keyframes } from "styled-components";
 
-const API_KEY = "8b1aaf9c4909b04edfb789054dfb88f1";
+import dotenv from "dotenv";
+dotenv.config();
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default function Weather() {
   const [weatherObj, setWeatherObj] = useState({});

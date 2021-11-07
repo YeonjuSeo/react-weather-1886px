@@ -29,7 +29,8 @@ function Weather({isDay, setIsDay}) {
                 const dt = new Date(data.dt * 1000);
 
                 setWeather({
-                    city: data.name,
+                    c
+                    ity: data.name,
                     weatherType: data.weather[0].main,
                     temperature: data.main.temp,
                     iconID: data.weather[0].icon,
@@ -40,8 +41,8 @@ function Weather({isDay, setIsDay}) {
                     date: dt.getDate(),
                     dayNum: dt.getDay(),
                 });
-                if(weather.iconID[2]==='d') setIsDay(['#7fc0f0', '#249af0']);
-                else setIsDay(['#2e2e2e', '#000000']);
+                if(weather.iconID[2]==='d') setIsDay(true);
+                else setIsDay(false);
             });
     }, [count]);
 

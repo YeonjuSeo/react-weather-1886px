@@ -40,7 +40,7 @@ function Weather({isDay, setIsDay}) {
                     date: dt.getDate(),
                     dayNum: dt.getDay(),
                 });
-                if(weather.iconID[2]==='d') setIsDay(true);
+                if(weather.iconID.charAt(2)==='d') setIsDay(true);
                 else setIsDay(false);
             });
         console.log(weather);

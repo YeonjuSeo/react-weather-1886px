@@ -22,7 +22,7 @@ function Weather({isDay, setIsDay}) {
             setCount(count + 1);
         }, 60000);
 
-        axios.get('http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=b814cccab1d91032fe41ee3c739c213d&units=metric')
+        axios.get('https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=b814cccab1d91032fe41ee3c739c213d&units=metric')
             .then(function (response) {
 
                 const data = response.data;
@@ -57,7 +57,7 @@ function Weather({isDay, setIsDay}) {
             <WeatherType>
                 {weather.weatherType}
             </WeatherType>
-            <WeatherIcon src={'http://openweathermap.org/img/wn/' + weather.iconID + '@4x.png'} />
+            <WeatherIcon src={'https://openweathermap.org/img/wn/' + weather.iconID + '@4x.png'} />
             <Temperature>
                 {weather.temperature} &#8451;
             </Temperature>

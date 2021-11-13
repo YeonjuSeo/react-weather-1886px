@@ -12,7 +12,7 @@ import {
 import { BsCloudFog } from "react-icons/bs";
 
 const api = {
-  key: "6ee1b6ba59abf58f6806b15abc0815b1",
+  key: "4ce2d69a9a47b36734f7d73ad75c6785",
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
@@ -59,8 +59,7 @@ function Weather({ setCold }) {
     });
   });
 
-  let c = weather.temperature - 273.15;
-  setCold(c < 15 ? true : false);
+  setCold(weather.temperature < 290 ? true : false);
 
   const selectIcon = () => {
     let iconId =
@@ -90,7 +89,7 @@ function Weather({ setCold }) {
       </div>
 
       <div className="weatherBox">
-        <Temperature>{c.toFixed(2)}℃</Temperature>
+        <Temperature>{(weather.temperature - 273.15).toFixed(2)}℃</Temperature>
         <WeatherDiv>{weather.main}</WeatherDiv>
         {selectIcon()}
       </div>

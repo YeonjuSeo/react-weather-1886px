@@ -38,7 +38,7 @@ const Wrapper = styled.div`
   justify-content: center;
   background-color: burlywood;
   ${(props) =>
-    props.cold === true &&
+    props.cold &&
     css`
       background-color: skyblue;
     `}
